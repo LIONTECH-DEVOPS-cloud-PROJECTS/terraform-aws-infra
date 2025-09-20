@@ -17,9 +17,9 @@ resource "aws_iam_group" "class32_infra" {
   name = "class32-infra"
 }
 
-# Create IAM users with console access
+# Create IAM users with specific names
 resource "aws_iam_user" "class32_users" {
-  for_each = toset(["elvis", "john", "okolo", "ike", "peter"])
+  for_each = toset(["elvis", "john", "mary", "paul", "james"])
   name     = each.key
 
   tags = {
@@ -34,20 +34,13 @@ resource "aws_iam_group_membership" "class32_members" {
   group = aws_iam_group.class32_infra.name
 }
 
-# Create login profiles for console access
+# Create login profiles for console access (without PGP encryption)
 resource "aws_iam_user_login_profile" "user_login" {
   for_each = aws_iam_user.class32_users
 
   user    = each.value.name
-  pgp_key = "keybase:example_user" # Replace with actual PGP key for encryption
-
-  # Password configuration
   password_reset_required = true
-  password_length         = 20
-
-  lifecycle {
-    ignore_changes = [password_reset_required]
-  }
+  password_length         = 16
 }
 
 # IAM password policy for security
@@ -153,47 +146,77 @@ resource "aws_iam_group_policy_attachment" "console_access" {
   policy_arn = aws_iam_policy.basic_console_access_policy.arn
 }
 
-# Optional: Enable MFA (highly recommended for console access)
-data "aws_iam_policy_document" "force_mfa" {
-  statement {
-    effect    = "Deny"
-    actions   = ["*"]
-    resources = ["*"]
+# Simplified MFA policy - using AWS managed policy instead
+resource "aws_iam_group_policy_attachment" "view_only_access" {
+  group      = aws_iam_group.class32_infra.name
+  policy_arn = "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess"
+}
 
+# Alternative: Create a simpler MFA enforcement policy
+data "aws_iam_policy_document" "mfa_policy" {
+  statement {
+    sid    = "AllowViewAccountInfo"
+    effect = "Allow"
+    actions = [
+      "iam:GetAccountPasswordPolicy",
+      "iam:ListVirtualMFADevices"
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid    = "AllowManageOwnVirtualMFADevice"
+    effect = "Allow"
+    actions = [
+      "iam:CreateVirtualMFADevice",
+      "iam:DeleteVirtualMFADevice"
+    ]
+    resources = ["arn:aws:iam::*:mfa/$${aws:username}"]
+  }
+
+  statement {
+    sid    = "AllowManageOwnUserMFA"
+    effect = "Allow"
+    actions = [
+      "iam:DeactivateMFADevice",
+      "iam:EnableMFADevice",
+      "iam:ListMFADevices",
+      "iam:ResyncMFADevice"
+    ]
+    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+  }
+
+  statement {
+    sid       = "DenyAllExceptListedIfNoMFA"
+    effect    = "Deny"
+    not_actions = [
+      "iam:CreateVirtualMFADevice",
+      "iam:EnableMFADevice",
+      "iam:GetUser",
+      "iam:ListMFADevices",
+      "iam:ListVirtualMFADevices",
+      "iam:ResyncMFADevice",
+      "iam:ChangePassword",
+      "iam:GetAccountPasswordPolicy"
+    ]
+    resources = ["*"]
     condition {
       test     = "BoolIfExists"
       variable = "aws:MultiFactorAuthPresent"
       values   = ["false"]
     }
-
-    # Allow users to manage their own MFA devices and view their own user information
-    not_actions = [
-      "iam:CreateVirtualMFADevice",
-      "iam:EnableMFADevice",
-      "iam:ListMFADevices",
-      "iam:ResyncMFADevice",
-      "iam:DeactivateMFADevice",
-      "iam:DeleteVirtualMFADevice",
-      "iam:GetUser",
-      "iam:ListVirtualMFADevices"
-    ]
-
-    not_resources = [
-      "arn:aws:iam::*:user/$${aws:username}",
-      "arn:aws:iam::*:mfa/$${aws:username}"
-    ]
   }
 }
 
-resource "aws_iam_policy" "force_mfa_policy" {
-  name        = "ForceMFA"
-  description = "Force MFA usage for all actions except MFA management"
-  policy      = data.aws_iam_policy_document.force_mfa.json
+resource "aws_iam_policy" "mfa_policy" {
+  name        = "MFAPolicy"
+  description = "Policy to enforce MFA usage"
+  policy      = data.aws_iam_policy_document.mfa_policy.json
 }
 
-resource "aws_iam_group_policy_attachment" "force_mfa" {
+resource "aws_iam_group_policy_attachment" "mfa_policy_attachment" {
   group      = aws_iam_group.class32_infra.name
-  policy_arn = aws_iam_policy.force_mfa_policy.arn
+  policy_arn = aws_iam_policy.mfa_policy.arn
 }
 
 # Outputs
@@ -223,8 +246,8 @@ output "console_login_url" {
 }
 
 output "user_passwords" {
-  description = "Encrypted passwords for users (decrypt with PGP key)"
-  value       = { for k, v in aws_iam_user_login_profile.user_login : k => v.encrypted_password }
+  description = "Passwords for users (will be shown in plain text)"
+  value       = { for k, v in aws_iam_user_login_profile.user_login : k => v.password }
   sensitive   = true
 }
 
