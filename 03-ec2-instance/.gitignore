@@ -1,0 +1,85 @@
+# Local Terraform directories
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfstate.*.backup
+terraform.tfstate.*
+*.tfplan
+*.terraform.lock.hcl
+
+# Crash log files
+crash.log
+crash.*.log
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# Environment files
+.env
+.env.*
+.env.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Plan output files
+*.tfplan
+plan.out
+
+# Variable files (often contain secrets)
+*.tfvars
+*.tfvars.json
+terraform.tfvars
+terraform.tfvars.json
+
+# Backup files
+*.backup
+*.bak
+
+# Lock files (except the required .terraform.lock.hcl which should be committed)
+# Note: .terraform.lock.hcl is committed, but backup lock files are ignored
+*.lock.hcl.backup
+
+# Build artifacts
+build/
+dist/
+out/
+
+# Custom ignore patterns for specific providers
+# Uncomment if using these providers:
+
+# Ignore downloaded provider binaries
+# terraform-provider-*
+
+# For Terragrunt (if using)
+.terragrunt-cache/
+terragrunt.hcl.backup
+
+# For Terraform Cloud/Enterprise
+.terraform.lock.hcl.tmp
+
+# For Windows
+[Tt]humbs.db

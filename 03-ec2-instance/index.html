@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LionTech Solutions Canada - Your Technology Partner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap">
+    <link rel="icon" href="https://github.com/projects-canada/images/blob/main/2.png?raw=true" type="image/png">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #ff9900;
+            --accent: #e31837;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #fff;
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.95)), 
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e31837" stroke-width="1" stroke-opacity="0.1"/></svg>');
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #003a75 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .canadian-flag {
+            display: inline-block;
+            width: 20px;
+            height: 12px;
+            background: linear-gradient(to right, #e31837 33%, white 33%, white 66%, #e31837 66%);
+            margin-left: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1519834064978-9b52bbbed6a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #e31837 25%, white 25%, white 50%, #e31837 50%, #e31837 75%, white 75%);
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #e58900;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mission Vision Section */
+        .mission-vision {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .mv-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .mv-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border-top: 5px solid var(--primary);
+        }
+        
+        .mv-card.mission {
+            border-top-color: var(--primary);
+        }
+        
+        .mv-card.vision {
+            border-top-color: var(--accent);
+        }
+        
+        .mv-card.values {
+            border-top-color: var(--secondary);
+        }
+        
+        .mv-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .mv-card.vision .mv-icon {
+            color: var(--accent);
+        }
+        
+        .mv-card.values .mv-icon {
+            color: var(--secondary);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            background: var(--primary);
+            color: white;
+            font-size: 2.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 5px solid white;
+            outline: 1px solid var(--primary);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-features {
+            margin: 1.5rem 0;
+        }
+        
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .about-feature i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-right: 0.8rem;
+            margin-top: 0.2rem;
+        }
+        
+        /* Training Programs */
+        .training {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .training-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .training-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .training-card h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .training-card ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .training-card ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .training-card ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Mentorship & Recruitment */
+        .mentorship {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .mentorship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .mentorship-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .mentorship-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mentorship-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-details a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-details a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Confirmation Message */
+        .confirmation {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            text-align: center;
+            border-left: 5px solid #28a745;
+        }
+        
+        /* Location Section */
+        .location {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary);
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            border-top: 5px solid var(--accent);
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h4,
+        .footer-newsletter h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .hero {
+                padding: 4rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+            }
+            
+            .service-card, .training-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://github.com/projects-canada/images/blob/main/2.png?raw=true" alt="LionTech Solutions Logo">
+                <h1>LionTech Solutions <span class="canadian-flag" title="Canadian Company"></span></h1>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Empowering Canadian Businesses with Technology Solutions</h2>
+            <p>From IT consulting and managed services to advanced training and talent solutions, we help your business thrive in the digital age.</p>
+            <a href="#contact" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Mission Vision Section -->
+    <section class="mission-vision" id="mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission, Vision & Values</h2>
+                <p>Guiding principles that drive our Canadian technology solutions</p>
+            </div>
+            <div class="mv-container">
+                <div class="mv-card mission">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To empower Canadian businesses and individuals with innovative technology solutions, expert training, and career development services that drive growth and digital transformation.</p>
+                </div>
+                <div class="mv-card vision">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To be Canada's leading technology solutions provider, recognized for excellence in IT services, education, and talent development while fostering innovation and economic growth nationwide.</p>
+                </div>
+                <div class="mv-card values">
+                    <div class="mv-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <p>Excellence, Innovation, Integrity, Collaboration, and Community. We're committed to delivering exceptional value while contributing to Canada's technology ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive technology solutions tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Managed IT Services</h3>
+                        <p>Complete IT management, network security, and 24/7 support to keep your business running smoothly.</p>
+                        <a href="#contact" class="btn">Contact Us</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Cloud Solutions</h3>
+                        <p>Secure cloud migration, management, and optimization for scalable business growth.</p>
+                        <a href="#contact" class="btn">Contact Us</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Cybersecurity</h3>
+                        <p>Comprehensive protection against threats with advanced security assessments and solutions.</p>
+                        <a href="#contact" class="btn">Contact Us</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Web Development</h3>
+                        <p>Professional website design, e-commerce solutions, and digital presence optimization.</p>
+                        <a href="#contact" class="btn">Contact Us</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>IT Training</h3>
+                        <p>Customized training programs for businesses and individuals in trending technologies.</p>
+                        <a href="#contact" class="btn">Contact Us</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Business Consulting</h3>
+                        <p>Technology strategy, digital transformation, and process optimization consulting.</p>
+                        <a href="#contact" class="btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About LionTech Solutions</h2>
+                <p>Your trusted technology partner in Barrie and across Canada</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="LionTech Team">
+                </div>
+                <div class="about-text">
+                    <h2>We Drive Digital Transformation</h2>
+                    <p>Founded by a Bachelor of Commerce graduate, LionTech Solutions combines business expertise with technical excellence to deliver comprehensive technology solutions that drive growth and innovation.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Business-First Approach</h4>
+                                <p>We align technology with your business goals for maximum ROI.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Expert Team</h4>
+                                <p>Certified professionals with years of industry experience.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Local Presence, Global Standards</h4>
+                                <p>Based in Barrie, serving clients across Canada with world-class solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>At LionTech, we believe technology should empower businesses, not complicate them. Our holistic approach ensures that every solution we deliver is tailored to your specific needs and integrated seamlessly into your operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Programs Section -->
+    <section class="training" id="training">
+        <div class="container">
+            <div class="section-title">
+                <h2>Training Programs</h2>
+                <p>Advance your career with our industry-relevant technology training</p>
+            </div>
+            <div class="training-grid">
+                <div class="training-card">
+                    <h3>Cloud Computing</h3>
+                    <p>Master AWS, Azure, and Google Cloud platforms with hands-on training.</p>
+                    <ul>
+                        <li>Cloud Architecture</li>
+                        <li>Serverless Computing</li>
+                        <li>Containerization</li>
+                        <li>Cloud Security</li>
+                    </ul>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                <div class="training-card">
+                    <h3>Cybersecurity</h3>
+                    <p>Learn to protect systems and networks from digital attacks.</p>
+                    <ul>
+                        <li>Ethical Hacking</li>
+                        <li>Vulnerability Assessment</li>
+                        <li>Network Defense</li>
+                        <li>Security Operations</li>
+                    </ul>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                <div class="training-card">
+                    <h3>DevOps & Automation</h3>
+                    <p>Bridge development and operations with automation tools.</p>
+                    <ul>
+                        <li>CI/CD Pipelines</li>
+                        <li>Infrastructure as Code</li>
+                        <li>Configuration Management</li>
+                        <li>Container Orchestration</li>
+                    </ul>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                <div class="training-card">
+                    <h3>Artificial Intelligence</h3>
+                    <p>Harness the power of AI and machine learning for business applications.</p>
+                    <ul>
+                        <li>Machine Learning</li>
+                        <li>Deep Learning</li>
+                        <li>Natural Language Processing</li>
+                        <li>Computer Vision</li>
+                    </ul>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship & Recruitment Section -->
+    <section class="mentorship" id="mentorship">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mentorship & Career Services</h2>
+                <p>Supporting your professional growth journey in technology</p>
+            </div>
+            <div class="mentorship-grid">
+                <div class="mentorship-card">
+                    <div class="mentorship-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Career Mentorship</h3>
+                    <p>One-on-one guidance from industry experts to help you navigate your technology career path and achieve your professional goals.</p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                <div class="mentorship-card">
+                    <div class="mentorship-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Coaching Programs</h3>
+                    <p>Personalized coaching to develop your technical skills, interview preparation, and professional presence in the tech industry.</p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                <div class="mentorship-card">
+                    <div class="mentorship-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Recruitment Services</h3>
+                    <p>Connecting talented technology professionals with Canadian companies seeking top-tier IT talent across various specializations.</p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us to discuss how we can help your business</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>92 Caplan Ave, Barrie, ON L4N 9J2</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+16473818836">+1 (647) 381-8836</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:liontechacademy@gmail.com">liontechacademy@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9AM - 5PM</p>
+                            <p>Saturday: 10AM - 2PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/movnbqrj" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Your Phone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="Managed IT">Managed IT Services</option>
+                                <option value="Cloud Solutions">Cloud Solutions</option>
+                                <option value="Cybersecurity">Cybersecurity</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="IT Training">IT Training</option>
+                                <option value="Business Consulting">Business Consulting</option>
+                                <option value="Mentorship">Career Mentorship</option>
+                                <option value="Coaching">Coaching Programs</option>
+                                <option value="Recruitment">Recruitment Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <input type="hidden" id="country" name="country">
+                        <input type="hidden" id="countryCode" name="countryCode">
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                    <div id="confirmationMessage" class="confirmation">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Thank You for Contacting LionTech Solutions!</h3>
+                        <p>We've received your message and will get back to you within 24 hours. In the meantime, feel free to explore our website to learn more about our services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Location</h2>
+                <p>Visit our campus in Barrie, Ontario</p>
+            </div>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="https://github.com/projects-canada/images/blob/main/2.png?raw=true" alt="LionTech Solutions Logo">
+                    <p>Your trusted technology partner in Barrie and across Canada.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#mission">Mission & Vision</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#training">Training</a></li>
+                        <li><a href="#mentorship">Mentorship</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Managed IT</a></li>
+                        <li><a href="#services">Cloud Solutions</a></li>
+                        <li><a href="#services">Cybersecurity</a></li>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Business Consulting</a></li>
+                        <li><a href="#mentorship">Career Mentorship</a></li>
+                        <li><a href="#mentorship">Recruitment Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest in technology trends and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 LionTech Solutions Canada. All rights reserved. Proudly Canadian <span class="canadian-flag" style="margin-left: 5px;"></span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0L8Lj1-I8HoCa3g-djqpHCSrht5cWtyk&callback=initMap" async defer></script>
+
+    <script>
+        // Simple JavaScript for mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Initialize Google Map
+        function initMap() {
+            const location = { lat: 44.389355, lng: -79.690331 }; // Barrie, ON coordinates
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: location,
+                styles: [
+                    {
+                        "featureType": "administrative",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#444444"}]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [{"color": "#f2f2f2"}]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "all",
+                        "stylers": [{"saturation": -100}, {"lightness": 45}]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "simplified"}]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels.icon",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [{"color": "#dde6e8"}, {"visibility": "on"}]
+                    }
+                ]
+            });
+            
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: 'LionTech Solutions Canada',
+                icon: {
+                    url: 'https://github.com/projects-canada/images/blob/main/2.png?raw=true',
+                    scaledSize: new google.maps.Size(40, 40)
+                }
+            });
+            
+            const infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div style="text-align: center;">
+                        <h3 style="margin-bottom: 5px; color: #0056b3;">LionTech Solutions</h3>
+                        <p style="margin: 5px 0;">92 Caplan Ave, Barrie, ON L4N 9J2</p>
+                        <p style="margin: 5px 0;"><a href="tel:+16473818836" style="color: #0056b3;">+1 (647) 381-8836</a></p>
+                    </div>
+                `
+            });
+            
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+            });
+        }
+        
+        // Get user's country information
+        function getCountryInfo() {
+            // Using ipapi.co API to get country information
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('country').value = data.country_name;
+                    document.getElementById('countryCode').value = data.country_calling_code;
+                })
+                .catch(error => {
+                    console.error('Error fetching country information:', error);
+                });
+        }
+        
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        
+        if (contactForm) {
+            // Get country info when form is loaded
+            getCountryInfo();
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic form validation
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !phone || !message) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Prepare form data for Formspree
+                const formData = new FormData(contactForm);
+                
+                // Submit to Formspree
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Show confirmation message
+                        confirmationMessage.style.display = 'block';
+                        // Hide form
+                        contactForm.style.display = 'none';
+                        // Scroll to confirmation message
+                        confirmationMessage.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        response.json().then(data => {
+                            if (data.errors) {
+                                alert('Error: ' + data.errors.map(error => error.message).join(', '));
+                            } else {
+                                alert('Oops! There was a problem submitting your form. Please try again.');
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    alert('Oops! There was a problem submitting your form. Please try again.');
+                    console.error('Form submission error:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -19,7 +19,7 @@ variable "instance_type" {
 variable "key_name" {
   description = "Name of the key pair to use for the instance"
   type        = string
-  default     = "my-keypair"
+  default     = "sept06"
 }
 
 variable "tags" {
