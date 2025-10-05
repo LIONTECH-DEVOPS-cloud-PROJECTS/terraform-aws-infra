@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-1"
+  default     = "ca-canada-1"
 }
 
 variable "project_name" {
@@ -65,13 +65,13 @@ variable "ec2_instance_count" {
 variable "ec2_ami_id" {
   description = "AMI ID for EC2 instances"
   type        = string
-  default     = "ami-0c02fb55956c7d316" # Amazon Linux 2 in us-east-1
+  default     = "ami-0dd67d541aa70c8b9" # Amazon Linux 2 in us-east-1
 }
 
 variable "ec2_instance_type" {
   description = "Instance type for EC2 instances"
   type        = string
-  default     = "t3.micro"
+  default     = "t2.micro"
 }
 
 variable "ec2_key_pair" {
